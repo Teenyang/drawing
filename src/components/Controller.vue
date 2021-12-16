@@ -5,7 +5,7 @@
       <Shape
         v-for="shape in shapeOptions"
         :key="shape.value"
-        @click="$emit('update:shape', shape)"
+        @click="createShape(shape)"
       >
         <i class="far" :class="shape.className"></i>
       </Shape>
@@ -16,7 +16,7 @@
       <Shape
         v-for="color in colors"
         :key="color.value"
-        @click="$emit('update:color', color)"
+        @click="setColor(color)"
       >
         <i
           class="fas"
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+//! Path2D
+import drawShape from "@/utility/drawShape.js";
 import Shape from "@/components/Shape.vue";
 
 export default {
@@ -43,6 +45,10 @@ export default {
     Shape,
   },
   props: {
+    shapes: {
+      type: Array,
+      required: true,
+    },
     shapeOptions: {
       type: Array,
       required: true,
@@ -50,6 +56,26 @@ export default {
     colors: {
       type: Array,
       required: true,
+    },
+  },
+  methods: {
+    createShape(shape) {
+      const newShape = new drawShape.Shape(
+        shape.text,
+        shape.x,
+        shape.y,
+        shape.width,
+        shape.height
+      );
+      this.$emit("update:shape", newShape);
+      // console.warn("createShape shapes: ", this.selectedIndex, this.shapes);
+    },
+    setColor(color) {
+      if (this.shapes.length === 0) {
+        return;
+      }
+      this.$emit("update:color", color.styleName);
+      // console.warn("setColor: ", this.selectedIndex, color.styleName);
     },
   },
 };

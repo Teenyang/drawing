@@ -1,10 +1,19 @@
 <template>
   <div class="Home">
     <Controller
+      :shapes="shapes"
       :shapeOptions="shapeOptions"
       :colors="colors"
-      @update:shape="createShape"
-      @update:color="setColor"
+      @update:shape="
+        $store.commit('canvas/shapes', [...shapes, $event]),
+          (selectedIndex = shapes.length - 1)
+      "
+      @update:color="
+        shapes[selectedIndex].updateColor({
+          strokeColor: $event,
+          fillColor: $event,
+        })
+      "
       @update:clearCanvas="clearCanvas"
       @update:saveCanvas="saveCanvas"
     />
@@ -162,32 +171,6 @@ export default {
 
       //~ ctx.rect version
       // this.findCurrentLayer(event.offsetX, event.offsetY);
-    },
-
-    createShape(shape) {
-      const newShape = new drawShape.Shape(
-        shape.text,
-        shape.x,
-        shape.y,
-        shape.width,
-        shape.height
-      );
-      this.$store.commit("canvas/shapes", [...this.shapes, newShape]);
-
-      // 新增的圖形，直接作為當前選擇的元素，可直接套用顏色
-      this.selectedIndex = this.shapes.length - 1;
-      // console.warn("createShape shapes: ", this.selectedIndex, this.shapes);
-    },
-    setColor(color) {
-      if (this.shapes.length === 0) {
-        return;
-      }
-
-      this.shapes[this.selectedIndex].updateColor({
-        strokeColor: color.styleName,
-        fillColor: color.styleName,
-      });
-      // console.warn("setColor: ", this.selectedIndex, color.styleName);
     },
 
     findCurrentLayer(rangeX, rangeY) {
