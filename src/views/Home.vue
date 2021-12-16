@@ -54,11 +54,16 @@ export default {
         strokeColor: shape.strokeColor,
         fillColor: shape.fillColor,
       });
+
       // 更新原始陣列內的元素資料，重新存入vuex
-      this.shapes.splice(index, 1, restoreShape);
-      this.$store.commit("canvas/shapes", this.shapes);
+      const restoreShapes = [
+        ...this.shapes.slice(0, index),
+        restoreShape,
+        ...this.shapes.slice(index + 1),
+      ];
+      this.$store.commit("canvas/shapes", restoreShapes);
     });
-    // console.log("created shapes, ", this.shapes);
+    console.log("created shapes, ", this.shapes);
   },
   mounted() {
     this.canvas = this.$refs.canvas;
