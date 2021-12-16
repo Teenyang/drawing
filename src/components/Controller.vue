@@ -96,7 +96,7 @@ export default {
   .style {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     gap: 20px 0;
   }
 
