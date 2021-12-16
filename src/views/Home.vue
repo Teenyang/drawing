@@ -10,7 +10,7 @@
     <section class="painting">
       <canvas
         id="drawCanvas"
-        width="1000"
+        width="900"
         height="600"
         ref="canvas"
         @click="selectElement"
