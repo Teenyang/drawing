@@ -56,7 +56,7 @@ export default {
       this.shapes.splice(index, 1, restoreShape);
       this.$store.commit("canvas/shapes", this.shapes);
     });
-    console.log("created shapes, ", this.shapes);
+    // console.log("created shapes, ", this.shapes);
   },
   mounted() {
     this.canvas = this.$refs.canvas;
@@ -88,12 +88,10 @@ export default {
     },
 
     clearCanvas() {
-      console.log("clearCanvas");
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.$store.commit("canvas/shapes", []);
     },
     saveCanvas() {
-      console.log("saveCanvas");
       localStorage.setItem("drawing_shapes", JSON.stringify(this.shapes));
     },
 
@@ -120,7 +118,7 @@ export default {
           this.canvas.style.cursor = "move";
         }
       });
-      console.warn(">>> mouse down index: ", this.selectedIndex);
+      // console.warn(">>> mouse down index: ", this.selectedIndex);
 
       //~ ctx.rect version
       // this.findCurrentLayer(event.offsetX, event.offsetY);
@@ -131,7 +129,7 @@ export default {
       // }
     },
     onDrop() {
-      console.error(">>>>> mouse up");
+      // console.error(">>>>> mouse up");
       this.isDragging = false;
       this.canvas.style.cursor = "auto";
     },
@@ -165,11 +163,7 @@ export default {
 
       // 新增的圖形，直接作為當前選擇的元素，可直接套用顏色
       this.selectedIndex = this.shapes.length - 1;
-      console.warn(
-        "createShape index/shapes: ",
-        this.selectedIndex,
-        this.shapes
-      );
+      // console.warn("createShape shapes: ", this.selectedIndex, this.shapes);
     },
     setColor(color) {
       if (this.shapes.length === 0) {
@@ -180,7 +174,7 @@ export default {
         strokeColor: color.styleName,
         fillColor: color.styleName,
       });
-      console.warn("setColor: ", this.selectedIndex, color.styleName);
+      // console.warn("setColor: ", this.selectedIndex, color.styleName);
     },
 
     findCurrentLayer(rangeX, rangeY) {
@@ -191,7 +185,7 @@ export default {
           this.selectedIndex = index;
         }
       });
-      console.log("findCurrentLayer selectedIndex: ", this.selectedIndex);
+      // console.log("findCurrentLayer selectedIndex: ", this.selectedIndex);
     },
   },
 };
