@@ -50,14 +50,6 @@ export default {
       return this.$store.getters["options/colors"];
     },
   },
-  methods: {
-    addShape(shape) {
-      console.log("addShape", shape);
-    },
-    setColor(color) {
-      console.log("setColor", color);
-    },
-  },
 };
 </script>
 
