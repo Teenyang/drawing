@@ -44,11 +44,11 @@ export default {
   },
   props: {
     shapeOptions: {
-      type: Object,
+      type: Array,
       required: true,
     },
     colors: {
-      type: Object,
+      type: Array,
       required: true,
     },
   },
