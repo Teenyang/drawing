@@ -1,6 +1,8 @@
 <template>
   <div class="Home">
     <Controller
+      :shapeOptions="shapeOptions"
+      :colors="colors"
       @update:shape="createShape"
       @update:color="setColor"
       @update:clearCanvas="clearCanvas"
@@ -28,7 +30,7 @@
 
 //! Path2D
 import drawShape from "@/utility/drawShape.js";
-import Controller from "@/views/Controller.vue";
+import Controller from "@/components/Controller.vue";
 
 export default {
   name: "Home",
@@ -76,6 +78,12 @@ export default {
     },
     shapes() {
       return this.$store.getters["canvas/shapes"];
+    },
+    shapeOptions() {
+      return this.$store.getters["options/shapeOptions"];
+    },
+    colors() {
+      return this.$store.getters["options/colors"];
     },
   },
   methods: {

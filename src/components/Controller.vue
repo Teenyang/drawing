@@ -20,7 +20,7 @@
       >
         <i
           class="fas"
-          :class="[$store.getters['options/shapeOptions'][0].className]"
+          :class="[shapeOptions[0].className]"
           :style="{ color: color.styleName }"
         ></i>
       </Shape>
@@ -42,12 +42,14 @@ export default {
   components: {
     Shape,
   },
-  computed: {
-    shapeOptions() {
-      return this.$store.getters["options/shapeOptions"];
+  props: {
+    shapeOptions: {
+      type: Object,
+      required: true,
     },
-    colors() {
-      return this.$store.getters["options/colors"];
+    colors: {
+      type: Object,
+      required: true,
     },
   },
 };
