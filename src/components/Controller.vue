@@ -94,10 +94,13 @@ export default {
 
   .shape,
   .style {
+    max-width: 300px;
+    margin: 0 auto;
+
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px 0;
+    justify-content: space-around;
+    gap: 20px;
   }
 
   .clear {
