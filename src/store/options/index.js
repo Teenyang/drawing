@@ -52,6 +52,11 @@ export default {
           text: "Blue",
           styleName: "blue",
         },
+        {
+          value: 4,
+          text: "Gold",
+          styleName: "gold",
+        },
       ];
     },
   },
