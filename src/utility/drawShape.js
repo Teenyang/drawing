@@ -40,6 +40,17 @@ export default {
           this.path.lineTo(this.x, this.y + this.height);
           break;
         }
+        case "Circle": {
+          this.path.arc(
+            this.x + this.width / 2,
+            this.y + this.height / 2,
+            this.width / 2,
+            0,
+            2 * Math.PI
+          );
+          // Math.PI = 180度
+          break;
+        }
       }
 
       ctx.strokeStyle = this.strokeColor;
