@@ -32,6 +32,15 @@ export default {
           width: 150,
           height: 70,
         },
+        {
+          value: 4,
+          text: "Circle",
+          className: "fa-circle",
+          x: 0,
+          y: 0,
+          width: 150,
+          height: 150,
+        },
       ];
     },
 
