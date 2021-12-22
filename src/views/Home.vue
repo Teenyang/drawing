@@ -79,20 +79,19 @@ export default {
   },
   mounted() {
     this.canvas = this.$refs.canvas;
-    this.$store.commit("canvas/canvasCtx", this.canvas.getContext("2d"));
+    this.ctx = this.canvas.getContext("2d");
     this.render(); // 遞迴執行window.requestAnimationFrame
   },
   data() {
     return {
       canvas: null,
+      ctx: null,
+
       selectedIndex: null,
       isDragging: false,
     };
   },
   computed: {
-    ctx() {
-      return this.$store.getters["canvas/canvasCtx"];
-    },
     shapes() {
       return this.$store.getters["canvas/shapes"];
     },
