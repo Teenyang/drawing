@@ -47,11 +47,14 @@ export default {
     Controller,
   },
   created() {
-    this.$store.commit(
-      "canvas/shapes",
-      JSON.parse(localStorage.getItem("drawing_shapes")) || []
-    );
-    this.shapes.forEach((shape, index) => {
+    const storageShapes =
+      JSON.parse(localStorage.getItem("drawing_shapes")) || [];
+
+    if (storageShapes.length === 0) {
+      return;
+    }
+
+    storageShapes.forEach((shape, index) => {
       const restoreShape = new drawShape.Shape(
         shape.type,
         shape.x,
